@@ -2,6 +2,7 @@ const e = require('express');
 const app = e();
 const axios = require('axios');
 const hbs = require('hbs');
+const port = process.env.PORT || 3000;
 
 hbs.registerPartials(__dirname + '/views/partial');
 app.set('view engine','hbs');//setting hbs as view engine
@@ -9,6 +10,7 @@ app.set('view engine','hbs');//setting hbs as view engine
 
 
 app.use((req, res, next) => {
+  //TODO: log the logs in a file
   console.log( new Date().toString() + req.url);
   next();
 });
@@ -27,6 +29,6 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(3000, ()=> {
+app.listen(port, ()=> {
   console.log('Server started and listening to 3000');
 });
